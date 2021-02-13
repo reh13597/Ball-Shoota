@@ -6,12 +6,12 @@ public class PlayerAttack : MonoBehaviour
     public float range = 100f;
 
     public Camera fpsCam;
-    
+
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Sounds.PlaySound("fire");
+            // Sounds.PlaySound("fire");
             Shoot();
         }
     }

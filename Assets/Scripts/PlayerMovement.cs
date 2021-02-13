@@ -11,11 +11,14 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 10f;
 
     public LayerMask Ground;
+    public AudioSource audioSource;
+    private AudioClip walkingSound;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
+        walkingSound = Resources.Load<AudioClip>("footstep");
     }
 
     void Update()
@@ -31,9 +34,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W) || (Input.GetKeyDown(KeyCode.A)) || (Input.GetKeyDown(KeyCode.S) || (Input.GetKeyDown(KeyCode.D))))
         {
-            Sounds.PlaySound("walk");
+            audioSource.PlayOneShot(walkingSound);
+            // Add code to make the sound keep playing when W or any forward/movement is triggered.
         }
-            
+
         Vector3 move = transform.right * x + transform.forward * y;
         rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
     }
