@@ -10,6 +10,7 @@ public class MouseLook : MonoBehaviour
 
     float x = 0;
     float y = 0;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -25,13 +26,13 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(x, 0, 0);
         player.transform.localRotation = Quaternion.Euler(0, y, 0);
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Cursor.lockState == CursorLockMode.Locked)
-                Cursor.lockState = CursorLockMode.None;
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    if (Cursor.lockState == CursorLockMode.Locked)
+        //        Cursor.lockState = CursorLockMode.None;
 
-            if (Cursor.lockState == CursorLockMode.None)
-                Cursor.lockState = CursorLockMode.Locked;
-        }
+        //    if (Cursor.lockState == CursorLockMode.None)
+        //        Cursor.lockState = CursorLockMode.Locked;
+        //}
     }
 }
