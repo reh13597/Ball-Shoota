@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class ShootingAi : MonoBehaviour
@@ -12,7 +11,7 @@ public class ShootingAi : MonoBehaviour
 
     public float health;
 
-    //Patroling
+    //Patrolling
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
@@ -28,7 +27,7 @@ public class ShootingAi : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("PlayerObj").transform;
+        player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 

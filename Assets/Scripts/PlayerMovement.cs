@@ -10,12 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public CapsuleCollider col;
 
-    public GameObject winMenuUI;
-    public Camera playerCamera;
-    public TextMeshProUGUI scoreText;
-
-    int score;
-
     //public bool allowButtonHold;
     //bool walking;
 
@@ -31,9 +25,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
         walkingSound = Resources.Load<AudioClip>("footstep");
-        score = 0;
-        SetScoreText();
-        winMenuUI.SetActive(false);
     }
 
     void Update()
@@ -75,38 +66,9 @@ public class PlayerMovement : MonoBehaviour
     //   }
     //}
 
-    void SetScoreText()
-    {
-        scoreText.text = "Enemies killed: " + score.ToString();
-
-        if (score >= 15)
-        {
-            YouWin();
-        }
-    }
-
-    void YouWin()
-    {
-        winMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        playerCamera.GetComponent<MouseLook>().enabled = false;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
 
     private bool isGrounded()
     {
         return Physics.CheckCapsule(col.bounds.center, new Vector3(col.bounds.center.x, col.bounds.min.y, col.bounds.center.z), col.radius * 9f, Ground);
-    }
-
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.collider.CompareTag("Enemy"))
-        {
-            //Destroy(col.collider.gameObject);
-            score = score + 1;
-            SetScoreText();
-        }
-
     }
 }

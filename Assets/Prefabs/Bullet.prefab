@@ -145,6 +145,9 @@ MonoBehaviour:
   maxCollisions: 1
   maxLifetime: 4
   explodeOnTouch: 1
+  winMenuUI: {fileID: 0}
+  playerCamera: {fileID: 0}
+  scoreText: {fileID: 0}
 --- !u!135 &5914081279192690526
 SphereCollider:
   m_ObjectHideFlags: 0

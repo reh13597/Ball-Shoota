@@ -23,12 +23,23 @@ public class CustomBullet : MonoBehaviour
     public float maxLifetime;
     public bool explodeOnTouch = true;
 
+    //public GameObject player;
+
+    //public GameObject winMenuUI;
+    //public Camera playerCamera;
+    //public TextMeshProUGUI scoreText;
+
+    //int score;
+
     int collisions;
     PhysicMaterial physics_mat;
 
     private void Start()
     {
         Setup();
+       // score = 0;
+       // SetScoreText();
+       // winMenuUI.SetActive(false);
     }
 
     private void Update()
@@ -46,6 +57,7 @@ public class CustomBullet : MonoBehaviour
      * This function creates a bullet explosion when it collides with something else.
      * At the end, it invokes a function with 0.05f delay that destroys the BULLET game object.
      */
+
     private void Explode()
     {
         if (explosion != null)
@@ -54,13 +66,13 @@ public class CustomBullet : MonoBehaviour
         }
 
         Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, whatIsEnemies);
-        //for (int i = 0; i < enemies.Length; i++)
-        // {
-        //   enemies[i].GetComponent<ShootingAi>().TakeDamage(explosionDamage);
+        for (int i = 0; i < enemies.Length; i++)
+        {
+           enemies[i].GetComponent<ShootingAi>().TakeDamage(explosionDamage);
 
-        //   if (enemies[i].GetComponent<Rigidbody>())
-        //      enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange);
-        // }
+           if (enemies[i].GetComponent<Rigidbody>())
+              enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange);
+        }
 
         Invoke("Delay", 0.05f);
     }
@@ -84,6 +96,8 @@ public class CustomBullet : MonoBehaviour
         {
             Destroy(col.collider.gameObject);
             Explode();
+           // this.score = this.score + 1;
+           // SetScoreText();
         }
         
     }
@@ -104,4 +118,23 @@ public class CustomBullet : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRange);
     }
+
+    //void SetScoreText()
+   // {
+     //   scoreText.text = "Enemies killed: " + score.ToString();
+    //    Debug.Log("Score: " + this.score);
+    //    if (score >= 15)
+    //    {
+    //        YouWin();
+    //    }
+   // }
+
+  //  void YouWin()
+    //{
+     //   winMenuUI.SetActive(true);
+    //    Time.timeScale = 0f;
+     //   playerCamera.GetComponent<MouseLook>().enabled = false;
+     //   Cursor.lockState = CursorLockMode.None;
+     //   Cursor.visible = true;
+   // }
 }
